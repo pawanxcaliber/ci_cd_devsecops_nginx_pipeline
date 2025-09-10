@@ -21,7 +21,7 @@ jobs:
         working-directory: ./api
         run: |
           python -m pip install --upgrade pip
-          pip install bandit -r requirements.txt # Bandit is a test tool
+          pip install bandit -r requirements.txt 
 
       - name: Run Bandit linter
         working-directory: ./api
