@@ -1,6 +1,7 @@
 from flask import Flask
 
 app = Flask(__name__)
+CORS(app, origins="https://my-devsecops-ui.onrender.com")  # Fixing CORS issue
 
 @app.route('/api/message')
 def get_message():
