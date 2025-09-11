@@ -22,7 +22,7 @@ COPY api/ .
 RUN pip install --no-cache-dir bandit
 
 # Copy frontend files from the local filesystem
-COPY ui/ /app/ui/
+COPY ui/. /app/ui/
 
 # Copy the NGINX configuration
 COPY nginx/nginx.conf /etc/nginx/nginx.conf

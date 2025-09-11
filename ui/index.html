@@ -15,7 +15,6 @@
     <script>
     document.getElementById('myButton').addEventListener('click', () => {
         
-        // Remove the hardcoded URL and use a relative path
         fetch('/api/message')
             .then(response => response.text())
             .then(data => {
