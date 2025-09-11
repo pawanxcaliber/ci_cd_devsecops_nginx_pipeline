@@ -17,7 +17,7 @@ jobs:
         run: docker build -t my-devsecops-app .
 
       - name: Test Application Startup
-        run: docker run --rm my-devsecops-app python -c "from app import app"
+        run: docker run --rm my-devsecops-app python3 -c "from app import app"
 
       - name: Run Bandit Linter
         run: docker run --rm my-devsecops-app bandit -r . -x ./venv
