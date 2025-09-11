@@ -14,8 +14,6 @@
     </div>
     <script>
     document.getElementById('myButton').addEventListener('click', () => {
-        
-        const API_URL = 'https://my-devsecops-api.onrender.com';
 
         fetch(API_URL + '/api/message')
             .then(response => response.text())
