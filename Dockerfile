@@ -12,15 +12,17 @@ FROM nginx:1.21.3-alpine AS final
 # Install Python and dependencies in the final NGINX image
 RUN apk add --no-cache python3 py3-pip
 
+# Set up the Python environment in the final image
+WORKDIR /app/backend
+COPY api/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY api/ .
+
 # Copy frontend files from the local filesystem
 COPY ui/ /app/ui/
 
 # Copy the NGINX configuration
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
-
-# Set up the Python environment in the final image
-WORKDIR /app/backend
-COPY --from=backend-builder /app/ .
 
 # Expose port 8080 as NGINX will handle all traffic
 EXPOSE 8080
