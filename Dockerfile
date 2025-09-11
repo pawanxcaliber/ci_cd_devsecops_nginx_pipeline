@@ -9,6 +9,9 @@ COPY api/ .
 # Stage 2: Combine frontend, backend, and NGINX
 FROM nginx:1.21.3-alpine AS final
 
+# Install Python and dependencies in the final NGINX image
+RUN apk add --no-cache python3 py3-pip
+
 # Copy frontend files from the local filesystem
 COPY ui/ /app/ui/
 
@@ -24,4 +27,4 @@ COPY --from=backend-builder /app /app
 EXPOSE 8080
 
 # Command to run both services
-CMD sh -c "python /app/app.py & nginx -g 'daemon off;'"
+CMD sh -c "python3 /app/app.py & nginx -g 'daemon off;'"
