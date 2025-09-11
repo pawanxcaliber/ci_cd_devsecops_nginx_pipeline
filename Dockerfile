@@ -22,7 +22,7 @@ COPY api/ .
 RUN pip install --no-cache-dir bandit
 
 # Copy frontend files from the local filesystem
-COPY ui/. /app/ui/
+COPY ui/ /app/ui/
 
 # Copy the NGINX configuration
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
@@ -31,4 +31,4 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 EXPOSE 8080
 
 # Command to run both services
-CMD sh -c "python3 /app/backend/app.py & nginx -g 'daemon off;'"
+CMD sh -c "python3 /app/backend/app.py & nginx -g 'daemon off;'" 
