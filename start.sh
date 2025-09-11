@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Start the Python app in the background
-python3 /app/backend/app.py &
+# Start Flask backend with Gunicorn
+gunicorn -w 4 -b 0.0.0.0:5000 app:app --chdir /app/backend &
 
-# Start NGINX in the foreground
-nginx -g 'daemon off;'
+# Start NGINX
+nginx -g "daemon off;"
