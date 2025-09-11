@@ -27,8 +27,12 @@ COPY ui/. /app/ui/
 # Copy the NGINX configuration
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
+# Add the startup script
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 # Expose port 8080 as NGINX will handle all traffic
 EXPOSE 8080
 
-# Command to run both services
-CMD sh -c "python3 /app/backend/app.py & nginx -g 'daemon off;'" 
+# Use the startup script as the command
+CMD ["start.sh"]
