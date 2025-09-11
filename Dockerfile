@@ -18,13 +18,12 @@ COPY ui/ /app/ui/
 # Copy the NGINX configuration
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Copy the backend from the builder stage
-COPY --from=backend-builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages/
-COPY --from=backend-builder /usr/local/bin/ /usr/local/bin/
-COPY --from=backend-builder /app /app
+# Set up the Python environment in the final image
+WORKDIR /app/backend
+COPY --from=backend-builder /app/ .
 
 # Expose port 8080 as NGINX will handle all traffic
 EXPOSE 8080
 
 # Command to run both services
-CMD sh -c "python3 /app/app.py & nginx -g 'daemon off;'"
+CMD sh -c "python3 /app/backend/app.py & nginx -g 'daemon off;'"
