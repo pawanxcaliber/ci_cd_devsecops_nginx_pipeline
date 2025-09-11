@@ -18,6 +18,9 @@ COPY api/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY api/ .
 
+# Install linter tools (Bandit) in the final image
+RUN pip install --no-cache-dir bandit
+
 # Copy frontend files from the local filesystem
 COPY ui/ /app/ui/
 
